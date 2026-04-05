@@ -1,0 +1,14 @@
+{
+  "Home": {
+    "title": "Hello world"
+  },
+  "Metadata": {
+    "title": "My Website",
+    "description": "My awesome website"
+  },
+  "Header": {
+    "about": "About",
+    "skills": "Skills",
+    "contact": "Contact"
+  }
+}

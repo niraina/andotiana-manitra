@@ -1,0 +1,17 @@
+{
+  "Home": {
+    "title": "Hallo Welt"
+  },
+  "Metadata": {
+    "title": "Meine Website",
+    "description": "Meine tolle Website"
+  },
+  "Header": {
+    "about": "Über",
+    "skills": "Fähigkeiten",
+    "contact": "Kontakt"
+  },
+  "Hero": {
+    "description": "Webentwickler"
+  }
+}
