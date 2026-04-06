@@ -6,6 +6,7 @@ import {getMessages, getTranslations, setRequestLocale} from 'next-intl/server';
 import { routing } from "@/i18n/routing";
 import { notFound } from "next/navigation";
 import { ThemeProvider } from "@/providers/theme-provider";
+import { Analytics } from '@vercel/analytics/next';
 
 export async function generateMetadata({
   params
@@ -68,6 +69,7 @@ export default async function RootLayout({
               {children}
             </NextIntlClientProvider>
           </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
