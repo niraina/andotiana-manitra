@@ -2,25 +2,29 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
-import {getTranslations} from 'next-intl/server';
+import {getMessages, getTranslations, setRequestLocale} from 'next-intl/server';
 import { routing } from "@/i18n/routing";
 import { notFound } from "next/navigation";
 import { ThemeProvider } from "@/providers/theme-provider";
-import { Header } from "@/components/navbar";
 
 export async function generateMetadata({
-  params: {locale}
+  params
 }: {
-  params: {locale: string};
+  params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
-  const t = await getTranslations({locale, namespace: 'Metadata'});
+  const { locale } = await params;
+
+  const t = await getTranslations({
+    locale,
+    namespace: "Metadata"
+  });
 
   return {
     title: {
-      default: t('title'),
-      template: `%s | ${t('title')}` // 🔥 important
+      default: t("title"),
+      template: `%s | ${t("title")}`
     },
-    description: t('description')
+    description: t("description")
   };
 }
 
@@ -42,9 +46,12 @@ export default async function RootLayout({
   params: Promise<{ locale: string }>;
 }>) {
   const { locale } = await params;
+  setRequestLocale(locale); 
   if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
+
+  const messages = await getMessages();
   return (
     <html
       lang={locale}
@@ -57,7 +64,7 @@ export default async function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <NextIntlClientProvider>
+            <NextIntlClientProvider messages={messages}>
               {children}
             </NextIntlClientProvider>
           </ThemeProvider>

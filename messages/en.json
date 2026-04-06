@@ -10,5 +10,8 @@
     "about": "About",
     "skills": "Skills",
     "contact": "Contact"
+  },
+  "Hero": {
+    "description": "Web Developer"
   }
 }
